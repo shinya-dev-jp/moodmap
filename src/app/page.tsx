@@ -21,8 +21,9 @@ function WalletAuthScreen() {
     <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8 text-center">
       {/* Logo */}
       <div className="flex flex-col items-center gap-3">
-        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#F97316] to-[#F59E0B] flex items-center justify-center text-4xl shadow-2xl shadow-[#F97316]/40">
-          🌍
+        <div className="w-20 h-20 rounded-3xl overflow-hidden shadow-2xl shadow-[#F97316]/40">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icon-512.png" alt="MoodMap" className="w-full h-full object-cover" />
         </div>
         <h1 className="text-3xl font-bold text-white">{t("app.title")}</h1>
         <p className="text-white/60 text-sm max-w-xs">{t("verify.subtitle")}</p>
