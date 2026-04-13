@@ -14,18 +14,12 @@ function NotInWorldAppScreen() {
   const { t } = useI18n();
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#0F0C29] via-[#1E1B4B] to-[#111827] px-8 gap-6 text-center">
-      <div className="w-20 h-20 rounded-2xl overflow-hidden drop-shadow-2xl">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/icon-512.png" alt="MoodMap" width={80} height={80} className="w-full h-full object-cover" />
-      </div>
-      <div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/icon-512-transparent.png" alt="MoodMap" width={88} height={88} className="drop-shadow-2xl" />
+      <div className="space-y-2 max-w-[260px]">
         <h1 className="text-2xl font-bold text-white">{t("notInWorldApp.title")}</h1>
-        <p className="text-white/50 text-sm mt-2 leading-relaxed max-w-[280px]">
-          {t("notInWorldApp.line1")}
-        </p>
-        <p className="text-white/50 text-sm leading-relaxed max-w-[280px]">
-          {t("notInWorldApp.line2")}
-        </p>
+        <p className="text-white/50 text-sm">{t("notInWorldApp.line1")}</p>
+        <p className="text-white/50 text-sm">{t("notInWorldApp.line2")}</p>
       </div>
       <a
         href="https://worldcoin.org/download"
@@ -74,7 +68,7 @@ function WalletAuthScreen() {
         {/* Hero */}
         <div className="flex flex-col items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon-512.png" alt="MoodMap" width={96} height={96} className="drop-shadow-2xl" />
+          <img src="/icon-512-transparent.png" alt="MoodMap" width={96} height={96} className="drop-shadow-2xl" />
           <div>
             <h1 className="text-4xl font-black text-white tracking-tight">{t("app.title")}</h1>
             <p className="text-white/50 text-sm mt-1 max-w-[260px]">{t("verify.subtitle")}</p>
