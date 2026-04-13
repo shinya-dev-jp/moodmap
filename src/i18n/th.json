@@ -1,0 +1,52 @@
+{
+  "app.title": "MoodMap",
+
+  "tabs.mood": "อารมณ์",
+  "tabs.map": "แผนที่",
+  "tabs.calendar": "ปฏิทิน",
+  "tabs.profile": "โปรไฟล์",
+
+  "mood.title": "วันนี้คุณรู้สึกอย่างไร?",
+  "mood.subtitle": "แตะเพื่อบันทึกอารมณ์ของคุณ",
+  "mood.happy": "มีความสุข",
+  "mood.neutral": "เฉยๆ",
+  "mood.sad": "เศร้า",
+  "mood.angry": "โกรธ",
+  "mood.tired": "เหนื่อย",
+  "mood.excited": "ตื่นเต้น",
+  "mood.anxious": "กังวล",
+  "mood.peaceful": "สงบ",
+  "mood.logged": "บันทึกแล้ว!",
+  "mood.alreadyLogged": "คุณบันทึกไปแล้ววันนี้",
+  "mood.todaysMood": "อารมณ์วันนี้: {mood}",
+  "mood.streak": "ต่อเนื่อง {n} วัน",
+
+  "map.title": "แผนที่อารมณ์โลก",
+  "map.subtitle": "ดูว่าโลกรู้สึกอย่างไรวันนี้",
+  "map.totalToday": "{n} คนแชร์วันนี้",
+  "map.noData": "ยังไม่มีข้อมูลวันนี้",
+  "map.topMood": "อารมณ์ยอดนิยม",
+
+  "calendar.title": "ปฏิทินอารมณ์ของคุณ",
+  "calendar.subtitle": "30 วันที่ผ่านมา",
+  "calendar.noMood": "ไม่มีบันทึก",
+  "calendar.streak": "ต่อเนื่องปัจจุบัน: {n} วัน",
+  "calendar.bestStreak": "สถิติที่ดีที่สุด: {n} วัน",
+  "calendar.totalLogs": "บันทึกทั้งหมด: {n}",
+
+  "profile.title": "โปรไฟล์",
+  "profile.streak": "ต่อเนื่อง",
+  "profile.days": "วัน",
+  "profile.bestStreak": "ดีที่สุด: {n} วัน",
+  "profile.totalLogs": "บันทึกทั้งหมด",
+  "profile.memberSince": "สมาชิกตั้งแต่ {date}",
+
+  "verify.subtitle": "แบ่งปันอารมณ์ของคุณกับโลกทุกวัน",
+  "verify.feature1": "บันทึกอารมณ์วันละครั้ง",
+  "verify.feature2": "ดูแผนที่อารมณ์ของโลก",
+  "verify.feature3": "สร้างสถิติต่อเนื่องและติดตามอารมณ์ของคุณ",
+  "verify.button": "เข้าสู่ระบบด้วย World Wallet",
+  "verify.verifying": "กำลังเข้าสู่ระบบ...",
+  "verify.notInWorldApp": "กรุณาเปิดแอปนี้ใน World App",
+  "verify.footer": "หนึ่งคน หนึ่งอารมณ์ต่อวัน"
+}
