@@ -19,21 +19,13 @@ export function MoodScreen() {
   const { todayMood, streak, handleLogMood } = useApp();
   const { t } = useI18n();
 
-  const greeting = (() => {
-    const h = new Date().getHours();
-    if (h < 12) return "Good morning";
-    if (h < 18) return "Good afternoon";
-    return "Good evening";
-  })();
-
   return (
     <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
       {/* Header */}
       <div>
-        <p className="text-white/50 text-sm">{greeting}</p>
         <h1 className="text-2xl font-bold text-white leading-tight">
           {todayMood
-            ? `Feeling ${t(`mood.${todayMood}`)} today`
+            ? t("mood.todaysMood", { mood: t(`mood.${todayMood}`) })
             : t("mood.title")}
         </h1>
         {streak > 0 && (
@@ -48,12 +40,12 @@ export function MoodScreen() {
         <div className="w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center py-8 gap-2">
           <span className="text-6xl">{MOODS.find((m) => m.key === todayMood)?.emoji}</span>
           <span className="text-white font-semibold text-lg">{t(`mood.${todayMood}`)}</span>
-          <span className="text-white/40 text-sm">Logged for today</span>
+          <span className="text-white/40 text-sm">{t("mood.alreadyLogged")}</span>
         </div>
       ) : (
         <div className="w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center py-6 gap-1">
-          <span className="text-white/40 text-sm">How are you feeling today?</span>
-          <span className="text-white/20 text-xs">Tap a mood below</span>
+          <span className="text-white/40 text-sm">{t("mood.title")}</span>
+          <span className="text-white/20 text-xs">{t("mood.subtitle")}</span>
         </div>
       )}
 

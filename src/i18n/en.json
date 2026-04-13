@@ -1,11 +1,9 @@
 {
   "app.title": "MoodMap",
-
   "tabs.mood": "Mood",
   "tabs.map": "Map",
   "tabs.calendar": "Calendar",
   "tabs.profile": "Profile",
-
   "mood.title": "How are you feeling today?",
   "mood.subtitle": "Tap to log your mood",
   "mood.happy": "Happy",
@@ -20,27 +18,23 @@
   "mood.alreadyLogged": "You already logged today",
   "mood.todaysMood": "Today's mood: {mood}",
   "mood.streak": "{n}-day streak",
-
   "map.title": "World Mood Map",
   "map.subtitle": "See how the world feels today",
   "map.totalToday": "{n} people shared today",
   "map.noData": "No mood data yet today",
   "map.topMood": "Top mood",
-
   "calendar.title": "Your Mood Calendar",
   "calendar.subtitle": "Last 30 days",
   "calendar.noMood": "No mood logged",
   "calendar.streak": "Current streak: {n} days",
   "calendar.bestStreak": "Best streak: {n} days",
   "calendar.totalLogs": "Total logs: {n}",
-
   "profile.title": "Profile",
   "profile.streak": "Streak",
   "profile.days": "days",
   "profile.bestStreak": "Best: {n} days",
   "profile.totalLogs": "Total Logs",
   "profile.memberSince": "Member since {date}",
-
   "verify.subtitle": "Share your mood with the world, every day.",
   "verify.feature1": "Log your mood once a day",
   "verify.feature2": "See the world's collective mood on the map",
@@ -48,5 +42,12 @@
   "verify.button": "Sign in with World Wallet",
   "verify.verifying": "Signing in...",
   "verify.notInWorldApp": "Please open this app inside World App.",
-  "verify.footer": "One person, one mood per day"
+  "verify.footer": "One person, one mood per day",
+  "notInWorldApp.title": "World App Required",
+  "notInWorldApp.message": "MoodMap is a World App Mini App.\nOpen it inside the World App to continue.",
+  "notInWorldApp.button": "Get World App",
+  "profile.yourProfile": "Your Profile",
+  "profile.topVibes": "Top Vibes",
+  "profile.recentEntries": "Recent Entries",
+  "profile.langLabel": "Language"
 }

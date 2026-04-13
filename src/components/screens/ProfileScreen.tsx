@@ -3,6 +3,7 @@
 import { useApp } from "@/components/providers/AppProvider";
 import { useI18n } from "@/i18n";
 import type { MoodType } from "@/lib/types";
+import type { Locale } from "@/i18n";
 
 const MOOD_EMOJI: Record<MoodType, string> = {
   happy:    "😊",
@@ -15,18 +16,29 @@ const MOOD_EMOJI: Record<MoodType, string> = {
   angry:    "😡",
 };
 
+const LOCALES: { code: Locale; label: string }[] = [
+  { code: "ja", label: "日本語" },
+  { code: "en", label: "English" },
+  { code: "ko", label: "한국어" },
+  { code: "es", label: "Español" },
+  { code: "pt", label: "Português" },
+  { code: "th", label: "ภาษาไทย" },
+];
+
 export function ProfileScreen() {
   const { walletAddress, user, todayMood, streak, history } = useApp();
-  const { t } = useI18n();
+  const { t, locale, setLocale } = useI18n();
 
-  const displayName = user?.display_name ?? (walletAddress ? `#${walletAddress.slice(2, 8)}` : "---");
+  const shortAddress = walletAddress
+    ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
+    : "—";
+
   const joinDate = user?.created_at
     ? new Date(user.created_at).toLocaleDateString()
     : "";
 
   const recentHistory = history.filter((d) => d.mood !== null).slice(0, 14);
 
-  // Top 3 moods by frequency
   const moodCounts = history.reduce<Record<string, number>>((acc, d) => {
     if (d.mood) acc[d.mood] = (acc[d.mood] ?? 0) + 1;
     return acc;
@@ -39,8 +51,8 @@ export function ProfileScreen() {
     <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
       {/* Avatar + name */}
       <div>
-        <p className="text-white/50 text-sm">Your profile</p>
-        <h2 className="text-2xl font-bold text-white">{displayName}</h2>
+        <p className="text-white/50 text-sm">{t("profile.yourProfile")}</p>
+        <h2 className="text-2xl font-bold text-white font-mono">{shortAddress}</h2>
         {joinDate && (
           <p className="text-white/40 text-xs mt-0.5">
             {t("profile.memberSince", { date: joinDate })}
@@ -60,7 +72,7 @@ export function ProfileScreen() {
             🔥 {user?.streak ?? streak}
           </div>
           <div className="text-white/50 text-xs mt-1">
-            {t("profile.streak")} ({t("profile.days")})
+            {t("profile.streak")}
           </div>
         </div>
         <div className="bg-white/5 rounded-2xl p-4 text-center">
@@ -84,12 +96,12 @@ export function ProfileScreen() {
       {/* Top vibes */}
       {topVibes.length > 0 && (
         <div className="bg-white/5 rounded-2xl p-4">
-          <h3 className="text-white/70 text-sm font-semibold mb-3">Your top vibes</h3>
+          <h3 className="text-white/70 text-sm font-semibold mb-3">{t("profile.topVibes")}</h3>
           <div className="grid grid-cols-3 gap-2">
             {topVibes.map(([mood, count]) => (
               <div key={mood} className="bg-white/5 rounded-xl p-3 flex flex-col items-center gap-1">
                 <span className="text-2xl">{MOOD_EMOJI[mood]}</span>
-                <span className="text-white/80 text-xs font-medium capitalize">{mood}</span>
+                <span className="text-white/80 text-xs font-medium">{t(`mood.${mood}`)}</span>
                 <span className="text-white/30 text-[10px]">{count}×</span>
               </div>
             ))}
@@ -100,11 +112,11 @@ export function ProfileScreen() {
       {/* Recent moods trail */}
       {recentHistory.length > 0 && (
         <div className="bg-white/5 rounded-2xl p-4">
-          <h3 className="text-white/70 text-sm font-semibold mb-3">Recent entries</h3>
+          <h3 className="text-white/70 text-sm font-semibold mb-3">{t("profile.recentEntries")}</h3>
           <div className="flex flex-wrap gap-2">
             {recentHistory.map(({ date, mood }) => (
               <div key={date} className="flex flex-col items-center gap-0.5" title={date}>
-                <span className="text-xl">{mood ? MOOD_EMOJI[mood] : "⬜"}</span>
+                <span className="text-xl">{mood ? MOOD_EMOJI[mood as MoodType] : "⬜"}</span>
                 <span className="text-[9px] text-white/30">{new Date(date).getDate()}</span>
               </div>
             ))}
@@ -112,14 +124,25 @@ export function ProfileScreen() {
         </div>
       )}
 
-      {/* Wallet address */}
-      {walletAddress && (
-        <div className="bg-white/5 rounded-2xl p-4">
-          <p className="text-white/30 text-[10px] font-mono break-all">
-            {walletAddress}
-          </p>
+      {/* Language toggle */}
+      <div className="bg-white/5 rounded-2xl p-4">
+        <h3 className="text-white/70 text-sm font-semibold mb-3">{t("profile.langLabel")}</h3>
+        <div className="flex flex-wrap gap-2">
+          {LOCALES.map(({ code, label }) => (
+            <button
+              key={code}
+              onClick={() => setLocale(code)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                locale === code
+                  ? "bg-[#F97316] text-white"
+                  : "bg-white/10 text-white/50 hover:bg-white/20"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }

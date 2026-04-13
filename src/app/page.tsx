@@ -9,6 +9,32 @@ import { CalendarScreen } from "@/components/screens/CalendarScreen";
 import { ProfileScreen } from "@/components/screens/ProfileScreen";
 import { MiniKit } from "@worldcoin/minikit-js";
 
+// ── Not in World App Screen ────────────────────────────────────
+function NotInWorldAppScreen() {
+  const { t } = useI18n();
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#0F0C29] via-[#1E1B4B] to-[#111827] px-8 gap-6 text-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/icon-512.png" alt="MoodMap" width={80} height={80} className="drop-shadow-2xl opacity-80" />
+      <div>
+        <h1 className="text-2xl font-bold text-white">{t("notInWorldApp.title")}</h1>
+        <p className="text-white/50 text-sm mt-2 leading-relaxed whitespace-pre-line max-w-[280px]">
+          {t("notInWorldApp.message")}
+        </p>
+      </div>
+      <a
+        href="https://worldcoin.org/download"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold text-sm shadow-lg shadow-[#F97316]/30"
+      >
+        {t("notInWorldApp.button")}
+      </a>
+      <p className="text-white/20 text-xs">{t("verify.footer")}</p>
+    </div>
+  );
+}
+
 // ── Wallet Auth Screen ─────────────────────────────────────────
 const MOOD_FLOATS = ["😊", "😢", "😡", "😴", "🥰", "😎", "😰", "🤩"];
 
@@ -18,6 +44,8 @@ function WalletAuthScreen() {
 
   const isInWorldApp =
     typeof window !== "undefined" && MiniKit.isInstalled();
+
+  if (!isInWorldApp) return <NotInWorldAppScreen />;
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-b from-[#0F0C29] via-[#1E1B4B] to-[#111827] relative overflow-hidden">
@@ -67,20 +95,13 @@ function WalletAuthScreen() {
 
         {/* CTA */}
         <div className="flex flex-col items-center gap-3 w-full max-w-[300px]">
-          {!isInWorldApp ? (
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-3xl">📱</span>
-              <p className="text-white/40 text-sm">{t("verify.notInWorldApp")}</p>
-            </div>
-          ) : (
-            <button
-              onClick={handleWalletAuth}
-              disabled={isAuthLoading}
-              className="w-full bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#F97316]/40 active:scale-95 transition-all disabled:opacity-60 text-base"
-            >
-              {isAuthLoading ? t("verify.verifying") : t("verify.button")}
-            </button>
-          )}
+          <button
+            onClick={handleWalletAuth}
+            disabled={isAuthLoading}
+            className="w-full bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#F97316]/40 active:scale-95 transition-all disabled:opacity-60 text-base"
+          >
+            {isAuthLoading ? t("verify.verifying") : t("verify.button")}
+          </button>
           <p className="text-white/20 text-xs">{t("verify.footer")}</p>
         </div>
       </div>

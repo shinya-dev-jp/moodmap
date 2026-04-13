@@ -1,11 +1,9 @@
 {
   "app.title": "MoodMap",
-
   "tabs.mood": "きもち",
   "tabs.map": "マップ",
   "tabs.calendar": "カレンダー",
   "tabs.profile": "プロフィール",
-
   "mood.title": "今日の気分は？",
   "mood.subtitle": "タップして記録しよう",
   "mood.happy": "ハッピー",
@@ -20,27 +18,23 @@
   "mood.alreadyLogged": "今日はもう記録済みです",
   "mood.todaysMood": "今日の気分: {mood}",
   "mood.streak": "{n}日連続",
-
   "map.title": "世界のムードマップ",
   "map.subtitle": "世界中の気分を見てみよう",
   "map.totalToday": "今日は{n}人が記録",
   "map.noData": "まだ今日のデータはありません",
   "map.topMood": "一番多い気分",
-
   "calendar.title": "ムードカレンダー",
   "calendar.subtitle": "過去30日間",
   "calendar.noMood": "未記録",
   "calendar.streak": "現在の連続: {n}日",
   "calendar.bestStreak": "最高記録: {n}日",
   "calendar.totalLogs": "累計記録: {n}回",
-
   "profile.title": "プロフィール",
   "profile.streak": "連続",
   "profile.days": "日",
   "profile.bestStreak": "最高: {n}日",
   "profile.totalLogs": "累計記録",
   "profile.memberSince": "参加日: {date}",
-
   "verify.subtitle": "毎日の気分を世界にシェアしよう",
   "verify.feature1": "1日1回、気分を記録",
   "verify.feature2": "世界のムードマップを確認",
@@ -48,5 +42,12 @@
   "verify.button": "World Walletでサインイン",
   "verify.verifying": "サインイン中...",
   "verify.notInWorldApp": "World Appからアクセスしてください",
-  "verify.footer": "1人1日1ムード"
+  "verify.footer": "1人1日1ムード",
+  "notInWorldApp.title": "World Appが必要です",
+  "notInWorldApp.message": "MoodMapはWorld App専用のミニアプリです。\nWorld Appを開いてアクセスしてください。",
+  "notInWorldApp.button": "World Appをダウンロード",
+  "profile.yourProfile": "プロフィール",
+  "profile.topVibes": "よく記録した気分",
+  "profile.recentEntries": "最近の記録",
+  "profile.langLabel": "言語"
 }

@@ -1,11 +1,9 @@
 {
   "app.title": "MoodMap",
-
   "tabs.mood": "Humor",
   "tabs.map": "Mapa",
   "tabs.calendar": "Calendário",
   "tabs.profile": "Perfil",
-
   "mood.title": "Como você está se sentindo hoje?",
   "mood.subtitle": "Toque para registrar seu humor",
   "mood.happy": "Feliz",
@@ -20,27 +18,23 @@
   "mood.alreadyLogged": "Você já registrou hoje",
   "mood.todaysMood": "Humor de hoje: {mood}",
   "mood.streak": "Sequência de {n} dias",
-
   "map.title": "Mapa de humor do mundo",
   "map.subtitle": "Veja como o mundo se sente hoje",
   "map.totalToday": "{n} pessoas compartilharam hoje",
   "map.noData": "Ainda sem dados de hoje",
   "map.topMood": "Humor principal",
-
   "calendar.title": "Seu calendário de humor",
   "calendar.subtitle": "Últimos 30 dias",
   "calendar.noMood": "Sem registro",
   "calendar.streak": "Sequência atual: {n} dias",
   "calendar.bestStreak": "Melhor sequência: {n} dias",
   "calendar.totalLogs": "Total de registros: {n}",
-
   "profile.title": "Perfil",
   "profile.streak": "Sequência",
   "profile.days": "dias",
   "profile.bestStreak": "Melhor: {n} dias",
   "profile.totalLogs": "Total de Registros",
   "profile.memberSince": "Membro desde {date}",
-
   "verify.subtitle": "Compartilhe seu humor com o mundo, todos os dias.",
   "verify.feature1": "Registre seu humor uma vez por dia",
   "verify.feature2": "Veja o mapa mundial de humor",
@@ -48,5 +42,12 @@
   "verify.button": "Entrar com World Wallet",
   "verify.verifying": "Entrando...",
   "verify.notInWorldApp": "Abra este app dentro do World App.",
-  "verify.footer": "Uma pessoa, um humor por dia"
+  "verify.footer": "Uma pessoa, um humor por dia",
+  "notInWorldApp.title": "World App Necessário",
+  "notInWorldApp.message": "MoodMap é um Mini App do World App.\nAbra-o dentro do World App para continuar.",
+  "notInWorldApp.button": "Obter World App",
+  "profile.yourProfile": "Seu Perfil",
+  "profile.topVibes": "Seus principais humores",
+  "profile.recentEntries": "Entradas recentes",
+  "profile.langLabel": "Idioma"
 }

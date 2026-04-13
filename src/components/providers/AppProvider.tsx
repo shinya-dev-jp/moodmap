@@ -116,19 +116,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     async (mood: MoodType) => {
       const token = authToken ?? localStorage.getItem(AUTH_KEY);
       if (!token) return;
-      const res = await fetch("/api/mood", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ mood }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setTodayMood(mood);
-        setStreak(data.streak ?? streak);
-        await refreshMe();
+      // Optimistic update: respond immediately before API call
+      setTodayMood(mood);
+      try {
+        const res = await fetch("/api/mood", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ mood }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          setStreak(data.streak ?? streak);
+          await refreshMe();
+        } else {
+          // Revert on failure
+          setTodayMood(null);
+        }
+      } catch {
+        setTodayMood(null);
       }
     },
     [authToken, streak, refreshMe]

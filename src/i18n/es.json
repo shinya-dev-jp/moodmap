@@ -1,11 +1,9 @@
 {
   "app.title": "MoodMap",
-
   "tabs.mood": "Estado",
   "tabs.map": "Mapa",
   "tabs.calendar": "Calendario",
   "tabs.profile": "Perfil",
-
   "mood.title": "¿Cómo te sientes hoy?",
   "mood.subtitle": "Toca para registrar tu estado",
   "mood.happy": "Feliz",
@@ -20,27 +18,23 @@
   "mood.alreadyLogged": "Ya registraste hoy",
   "mood.todaysMood": "Estado de hoy: {mood}",
   "mood.streak": "Racha de {n} días",
-
   "map.title": "Mapa de estados del mundo",
   "map.subtitle": "Mira cómo se siente el mundo hoy",
   "map.totalToday": "{n} personas compartieron hoy",
   "map.noData": "Aún no hay datos de hoy",
   "map.topMood": "Estado principal",
-
   "calendar.title": "Tu calendario de estados",
   "calendar.subtitle": "Últimos 30 días",
   "calendar.noMood": "Sin registro",
   "calendar.streak": "Racha actual: {n} días",
   "calendar.bestStreak": "Mejor racha: {n} días",
   "calendar.totalLogs": "Total de registros: {n}",
-
   "profile.title": "Perfil",
   "profile.streak": "Racha",
   "profile.days": "días",
   "profile.bestStreak": "Mejor: {n} días",
   "profile.totalLogs": "Registros totales",
   "profile.memberSince": "Miembro desde {date}",
-
   "verify.subtitle": "Comparte tu estado con el mundo, cada día.",
   "verify.feature1": "Registra tu estado una vez al día",
   "verify.feature2": "Ve el mapa mundial de estados",
@@ -48,5 +42,12 @@
   "verify.button": "Iniciar sesión con World Wallet",
   "verify.verifying": "Iniciando sesión...",
   "verify.notInWorldApp": "Abre esta app dentro de World App.",
-  "verify.footer": "Una persona, un estado por día"
+  "verify.footer": "Una persona, un estado por día",
+  "notInWorldApp.title": "Requiere World App",
+  "notInWorldApp.message": "MoodMap es una Mini App de World App.\nÁbrela dentro de World App para continuar.",
+  "notInWorldApp.button": "Obtener World App",
+  "profile.yourProfile": "Tu Perfil",
+  "profile.topVibes": "Tus estados principales",
+  "profile.recentEntries": "Entradas recientes",
+  "profile.langLabel": "Idioma"
 }

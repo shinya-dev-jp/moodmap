@@ -1,11 +1,9 @@
 {
   "app.title": "MoodMap",
-
   "tabs.mood": "기분",
   "tabs.map": "지도",
   "tabs.calendar": "캘린더",
   "tabs.profile": "프로필",
-
   "mood.title": "오늘 기분이 어떠세요?",
   "mood.subtitle": "탭하여 기분을 기록하세요",
   "mood.happy": "행복",
@@ -20,27 +18,23 @@
   "mood.alreadyLogged": "오늘 이미 기록했습니다",
   "mood.todaysMood": "오늘의 기분: {mood}",
   "mood.streak": "{n}일 연속",
-
   "map.title": "세계 기분 지도",
   "map.subtitle": "오늘 세계의 기분을 확인하세요",
   "map.totalToday": "오늘 {n}명이 공유",
   "map.noData": "아직 오늘 데이터가 없습니다",
   "map.topMood": "가장 많은 기분",
-
   "calendar.title": "기분 캘린더",
   "calendar.subtitle": "최근 30일",
   "calendar.noMood": "기록 없음",
   "calendar.streak": "현재 연속: {n}일",
   "calendar.bestStreak": "최고 기록: {n}일",
   "calendar.totalLogs": "총 기록: {n}회",
-
   "profile.title": "프로필",
   "profile.streak": "연속",
   "profile.days": "일",
   "profile.bestStreak": "최고: {n}일",
   "profile.totalLogs": "총 기록",
   "profile.memberSince": "가입일: {date}",
-
   "verify.subtitle": "매일 세계와 기분을 나누세요.",
   "verify.feature1": "하루에 한 번 기분을 기록",
   "verify.feature2": "세계 기분 지도 확인",
@@ -48,5 +42,12 @@
   "verify.button": "World Wallet로 로그인",
   "verify.verifying": "로그인 중...",
   "verify.notInWorldApp": "World App에서 열어주세요.",
-  "verify.footer": "한 사람, 하루 한 기분"
+  "verify.footer": "한 사람, 하루 한 기분",
+  "notInWorldApp.title": "World App이 필요합니다",
+  "notInWorldApp.message": "MoodMap은 World App 전용 미니앱입니다.\nWorld App에서 열어주세요.",
+  "notInWorldApp.button": "World App 다운로드",
+  "profile.yourProfile": "내 프로필",
+  "profile.topVibes": "자주 기록한 기분",
+  "profile.recentEntries": "최근 기록",
+  "profile.langLabel": "언어"
 }
