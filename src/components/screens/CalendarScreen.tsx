@@ -37,34 +37,58 @@ export function CalendarScreen() {
     return max;
   }, 0);
 
+  // Last 7 days for the bar chart (most recent first → reverse for display)
+  const last7 = [...history].slice(0, 7).reverse();
+
   return (
-    <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4">
-      <div className="text-center">
+    <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
+      <div>
+        <p className="text-white/50 text-sm">Your patterns</p>
         <h1 className="text-2xl font-bold text-white">{t("calendar.title")}</h1>
-        <p className="text-white/50 text-sm mt-1">{t("calendar.subtitle")}</p>
       </div>
 
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-white/5 rounded-2xl p-3 text-center">
-          <div className="text-2xl font-bold text-[#F97316]">🔥 {streak}</div>
-          <div className="text-white/50 text-xs mt-1">
-            {t("calendar.streak", { n: streak })}
-          </div>
+          <div className="text-2xl font-bold text-[#F97316]">{streak}</div>
+          <div className="text-white/50 text-xs mt-1">day streak</div>
         </div>
         <div className="bg-white/5 rounded-2xl p-3 text-center">
           <div className="text-2xl font-bold text-[#F59E0B]">
             {history.filter((d) => d.mood !== null).length}
           </div>
-          <div className="text-white/50 text-xs mt-1">
-            {t("calendar.totalLogs", { n: history.filter((d) => d.mood !== null).length })}
-          </div>
+          <div className="text-white/50 text-xs mt-1">total logs</div>
         </div>
         <div className="bg-white/5 rounded-2xl p-3 text-center">
-          <div className="text-2xl font-bold text-white/70">30</div>
-          <div className="text-white/50 text-xs mt-1">{t("calendar.subtitle")}</div>
+          <div className="text-2xl">
+            {(() => {
+              const m = history.find((d) => d.mood)?.mood;
+              return m ? MOOD_EMOJI[m] : "—";
+            })()}
+          </div>
+          <div className="text-white/50 text-xs mt-1">top mood</div>
         </div>
       </div>
+
+      {/* Last 7 days bar view */}
+      {last7.length > 0 && (
+        <div className="bg-white/5 rounded-2xl p-4">
+          <p className="text-white/50 text-xs mb-3">Last 7 days</p>
+          <div className="grid grid-cols-7 gap-1.5">
+            {last7.map(({ date, mood }) => {
+              const dow = ["Su","Mo","Tu","We","Th","Fr","Sa"][new Date(date).getDay()];
+              return (
+                <div key={date} className="flex flex-col items-center gap-1">
+                  <div className={`w-full h-14 rounded-xl flex items-center justify-center text-lg ${mood ? MOOD_BG[mood] : "bg-white/5"}`}>
+                    {mood && MOOD_EMOJI[mood]}
+                  </div>
+                  <span className="text-[9px] text-white/30">{dow}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Calendar grid */}
       <div className="flex-1 overflow-y-auto">

@@ -26,20 +26,30 @@ export function ProfileScreen() {
 
   const recentHistory = history.filter((d) => d.mood !== null).slice(0, 14);
 
+  // Top 3 moods by frequency
+  const moodCounts = history.reduce<Record<string, number>>((acc, d) => {
+    if (d.mood) acc[d.mood] = (acc[d.mood] ?? 0) + 1;
+    return acc;
+  }, {});
+  const topVibes = Object.entries(moodCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3) as [MoodType, number][];
+
   return (
-    <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4">
+    <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
       {/* Avatar + name */}
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F97316] to-[#F59E0B] flex items-center justify-center text-3xl shadow-lg shadow-[#F97316]/30">
+      <div>
+        <p className="text-white/50 text-sm">Your profile</p>
+        <h2 className="text-2xl font-bold text-white">{displayName}</h2>
+        {joinDate && (
+          <p className="text-white/40 text-xs mt-0.5">
+            {t("profile.memberSince", { date: joinDate })}
+          </p>
+        )}
+      </div>
+      <div className="flex justify-center">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F97316] to-[#F59E0B] flex items-center justify-center text-3xl shadow-lg shadow-[#F97316]/30 ring-4 ring-[#F97316]/30">
           {todayMood ? MOOD_EMOJI[todayMood] : "🌍"}
-        </div>
-        <div className="text-center">
-          <h2 className="text-xl font-bold text-white">{displayName}</h2>
-          {joinDate && (
-            <p className="text-white/40 text-xs mt-0.5">
-              {t("profile.memberSince", { date: joinDate })}
-            </p>
-          )}
         </div>
       </div>
 
@@ -71,25 +81,31 @@ export function ProfileScreen() {
         </div>
       </div>
 
-      {/* Recent moods */}
+      {/* Top vibes */}
+      {topVibes.length > 0 && (
+        <div className="bg-white/5 rounded-2xl p-4">
+          <h3 className="text-white/70 text-sm font-semibold mb-3">Your top vibes</h3>
+          <div className="grid grid-cols-3 gap-2">
+            {topVibes.map(([mood, count]) => (
+              <div key={mood} className="bg-white/5 rounded-xl p-3 flex flex-col items-center gap-1">
+                <span className="text-2xl">{MOOD_EMOJI[mood]}</span>
+                <span className="text-white/80 text-xs font-medium capitalize">{mood}</span>
+                <span className="text-white/30 text-[10px]">{count}×</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Recent moods trail */}
       {recentHistory.length > 0 && (
         <div className="bg-white/5 rounded-2xl p-4">
-          <h3 className="text-white/70 text-sm font-semibold mb-3">
-            Recent Moods
-          </h3>
+          <h3 className="text-white/70 text-sm font-semibold mb-3">Recent entries</h3>
           <div className="flex flex-wrap gap-2">
             {recentHistory.map(({ date, mood }) => (
-              <div
-                key={date}
-                className="flex flex-col items-center gap-0.5"
-                title={date}
-              >
-                <span className="text-xl">
-                  {mood ? MOOD_EMOJI[mood] : "⬜"}
-                </span>
-                <span className="text-[9px] text-white/30">
-                  {new Date(date).getDate()}
-                </span>
+              <div key={date} className="flex flex-col items-center gap-0.5" title={date}>
+                <span className="text-xl">{mood ? MOOD_EMOJI[mood] : "⬜"}</span>
+                <span className="text-[9px] text-white/30">{new Date(date).getDate()}</span>
               </div>
             ))}
           </div>

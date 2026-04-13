@@ -19,34 +19,46 @@ export function MoodScreen() {
   const { todayMood, streak, handleLogMood } = useApp();
   const { t } = useI18n();
 
+  const greeting = (() => {
+    const h = new Date().getHours();
+    if (h < 12) return "Good morning";
+    if (h < 18) return "Good afternoon";
+    return "Good evening";
+  })();
+
   return (
-    <div className="flex-1 flex flex-col items-center px-4 pt-8 pb-4 gap-6">
+    <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-white">
+      <div>
+        <p className="text-white/50 text-sm">{greeting}</p>
+        <h1 className="text-2xl font-bold text-white leading-tight">
           {todayMood
-            ? t("mood.todaysMood", { mood: t(`mood.${todayMood}`) })
+            ? `Feeling ${t(`mood.${todayMood}`)} today`
             : t("mood.title")}
         </h1>
-        <p className="text-white/50 text-sm mt-1">
-          {todayMood ? t("mood.alreadyLogged") : t("mood.subtitle")}
-        </p>
         {streak > 0 && (
-          <div className="mt-3 inline-flex items-center gap-1.5 bg-[#F97316]/20 text-[#F97316] px-3 py-1 rounded-full text-sm font-semibold">
+          <div className="mt-2 inline-flex items-center gap-1.5 bg-[#F97316]/20 text-[#F97316] px-3 py-1 rounded-full text-sm font-semibold">
             🔥 {t("mood.streak", { n: streak })}
           </div>
         )}
       </div>
 
-      {/* Today's mood big display */}
-      {todayMood && (
-        <div className="w-32 h-32 rounded-full flex items-center justify-center text-6xl bg-gradient-to-br from-[#F97316]/30 to-[#F59E0B]/20 border-2 border-[#F97316]/40 shadow-lg shadow-[#F97316]/20">
-          {MOODS.find((m) => m.key === todayMood)?.emoji}
+      {/* Today's mood card */}
+      {todayMood ? (
+        <div className="w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center py-8 gap-2">
+          <span className="text-6xl">{MOODS.find((m) => m.key === todayMood)?.emoji}</span>
+          <span className="text-white font-semibold text-lg">{t(`mood.${todayMood}`)}</span>
+          <span className="text-white/40 text-sm">Logged for today</span>
+        </div>
+      ) : (
+        <div className="w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center py-6 gap-1">
+          <span className="text-white/40 text-sm">How are you feeling today?</span>
+          <span className="text-white/20 text-xs">Tap a mood below</span>
         </div>
       )}
 
       {/* Mood grid */}
-      <div className="w-full max-w-sm grid grid-cols-4 gap-3">
+      <div className="w-full grid grid-cols-4 gap-2.5">
         {MOODS.map(({ key, emoji, color }) => {
           const isSelected = todayMood === key;
           return (
@@ -59,7 +71,7 @@ export function MoodScreen() {
                   ? `bg-gradient-to-br ${color} shadow-lg scale-105`
                   : todayMood
                   ? "bg-white/5 opacity-40 cursor-not-allowed"
-                  : "bg-white/10 hover:bg-white/15"
+                  : "bg-white/10 hover:bg-white/15 cursor-pointer"
               }`}
             >
               <span className="text-3xl leading-none">{emoji}</span>
@@ -70,12 +82,6 @@ export function MoodScreen() {
           );
         })}
       </div>
-
-      {todayMood && (
-        <p className="text-white/30 text-xs text-center">
-          {t("mood.alreadyLogged")} — {t("mood.logged")}
-        </p>
-      )}
     </div>
   );
 }
