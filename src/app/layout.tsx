@@ -5,6 +5,10 @@ import { MiniKitWrapper } from "@/components/providers/MiniKitWrapper";
 export const metadata: Metadata = {
   title: "MoodMap",
   description: "Share your mood with the world, every day.",
+  icons: {
+    icon: "/icon-512.png",
+    apple: "/apple-touch-icon.png",
+  },
   other: {
     "worldcoin-mini-app": "true",
   },
