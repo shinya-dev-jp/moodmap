@@ -3,7 +3,7 @@ import "./globals.css";
 import { MiniKitWrapper } from "@/components/providers/MiniKitWrapper";
 
 export const metadata: Metadata = {
-  title: "MoodMap",
+  title: "MoodMap — Daily Mood Tracker",
   description: "Share your mood with the world, every day.",
   icons: {
     icon: "/icon-512.png",
