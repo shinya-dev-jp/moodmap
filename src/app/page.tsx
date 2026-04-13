@@ -40,10 +40,8 @@ function WalletAuthScreen() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8 text-center relative z-10">
         {/* Hero */}
         <div className="flex flex-col items-center gap-4">
-          <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-2xl shadow-[#F97316]/30 ring-2 ring-white/10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon-512.png" alt="MoodMap" className="w-full h-full object-cover" />
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icon-512.png" alt="MoodMap" width={96} height={96} className="drop-shadow-2xl" />
           <div>
             <h1 className="text-4xl font-black text-white tracking-tight">{t("app.title")}</h1>
             <p className="text-white/50 text-sm mt-1 max-w-[260px]">{t("verify.subtitle")}</p>
