@@ -1,20 +1,19 @@
 "use client";
 
-import { SmilePlus, Globe, CalendarDays, User } from "lucide-react";
-import { useI18n } from "@/i18n";
+import { SmilePlus, BarChart2, User, Globe } from "lucide-react";
 import type { TabKey } from "@/lib/types";
 
 interface TabConfig {
   key: TabKey;
-  labelKey: string;
-  Icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  Icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
 }
 
 const TABS: TabConfig[] = [
-  { key: "mood",     labelKey: "tabs.mood",     Icon: SmilePlus },
-  { key: "map",      labelKey: "tabs.map",       Icon: Globe },
-  { key: "calendar", labelKey: "tabs.calendar",  Icon: CalendarDays },
-  { key: "profile",  labelKey: "tabs.profile",   Icon: User },
+  { key: "mood",     label: "Home",    Icon: SmilePlus  },
+  { key: "map",      label: "Explore", Icon: Globe      },
+  { key: "calendar", label: "History", Icon: BarChart2  },
+  { key: "profile",  label: "Profile", Icon: User       },
 ];
 
 interface NavigationProps {
@@ -24,16 +23,19 @@ interface NavigationProps {
 }
 
 export function Navigation({ activeTab, onTabChange, hasNewMood }: NavigationProps) {
-  const { t } = useI18n();
   return (
     <nav
-      className="sticky bottom-0 pb-safe border-t border-white/[0.08] bg-[#1E1B4B]/95 backdrop-blur-lg z-10"
+      className="sticky bottom-0 pb-safe z-10"
       role="tablist"
       aria-label="Main navigation"
+      style={{
+        background: "rgba(13,13,20,0.92)",
+        backdropFilter: "blur(20px)",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
+      }}
     >
-      <div className="flex">
-        {TABS.map(({ key, labelKey, Icon }) => {
-          const label = t(labelKey);
+      <div className="flex items-stretch px-2 py-2">
+        {TABS.map(({ key, label, Icon }) => {
           const isActive = key === activeTab;
           return (
             <button
@@ -42,25 +44,31 @@ export function Navigation({ activeTab, onTabChange, hasNewMood }: NavigationPro
               role="tab"
               aria-selected={isActive}
               aria-label={label}
-              className={`flex-1 flex flex-col items-center py-3 gap-0.5 transition-colors active:scale-95 ${
-                isActive ? "text-[#F97316]" : "text-white/40"
-              }`}
+              className="flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl transition-all duration-200 active:scale-90 relative"
+              style={{
+                background: isActive ? "rgba(167,139,250,0.12)" : "transparent",
+                border: isActive ? "1px solid rgba(167,139,250,0.2)" : "1px solid transparent",
+              }}
             >
-              <div className="relative">
-                <Icon
-                  className={`h-5 w-5 transition-all ${isActive ? "scale-110" : "scale-100"}`}
-                  aria-hidden="true"
+              {/* Notification dot */}
+              {key === "mood" && hasNewMood && !isActive && (
+                <span
+                  className="absolute top-1.5 right-4 w-2 h-2 rounded-full animate-pulse"
+                  style={{ background: "#fb923c" }}
                 />
-                {key === "mood" && hasNewMood && !isActive && (
-                  <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse" />
-                )}
-              </div>
-              <span className={`text-[10px] transition-colors ${isActive ? "font-bold" : "font-medium"}`}>
+              )}
+              <Icon
+                size={20}
+                strokeWidth={isActive ? 2.5 : 1.8}
+                aria-hidden="true"
+                color={isActive ? "#a78bfa" : "rgba(244,244,248,0.35)"}
+              />
+              <span
+                className="text-[10px] font-semibold leading-none"
+                style={{ color: isActive ? "#a78bfa" : "rgba(244,244,248,0.35)" }}
+              >
                 {label}
               </span>
-              {isActive && (
-                <span className="block w-1 h-1 rounded-full bg-[#F97316] mt-0.5" />
-              )}
             </button>
           );
         })}

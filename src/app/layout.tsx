@@ -1,13 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { MiniKitWrapper } from "@/components/providers/MiniKitWrapper";
 
 export const metadata: Metadata = {
   title: "MoodMap",
-  description: "Share your mood with the world, every day.",
+  description: "Log your mood in seconds. Discover your emotional patterns.",
   other: {
     "worldcoin-mini-app": "true",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: "#0d0d14",
 };
 
 export default function RootLayout({
@@ -16,10 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-[#0d0d14]">
       <head>
-        <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL ?? ""} />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {process.env.NEXT_PUBLIC_SUPABASE_URL && (
+          <link rel="preconnect" href={process.env.NEXT_PUBLIC_SUPABASE_URL} />
+        )}
       </head>
       <body>
         <MiniKitWrapper>{children}</MiniKitWrapper>

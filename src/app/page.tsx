@@ -17,48 +17,70 @@ function WalletAuthScreen() {
   const isInWorldApp =
     typeof window !== "undefined" && MiniKit.isInstalled();
 
+  const features = [
+    { emoji: "😊", text: "Log your mood in under 5 seconds" },
+    { emoji: "📊", text: "Discover your emotional patterns" },
+    { emoji: "🔥", text: "Build streaks & share your vibe" },
+  ];
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8 text-center">
       {/* Logo */}
       <div className="flex flex-col items-center gap-3">
-        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#F97316] to-[#F59E0B] flex items-center justify-center text-4xl shadow-2xl shadow-[#F97316]/40">
+        <div
+          className="w-20 h-20 rounded-3xl flex items-center justify-center text-4xl"
+          style={{
+            background: "linear-gradient(135deg, rgba(167,139,250,0.25), rgba(129,140,248,0.15))",
+            border: "1.5px solid rgba(167,139,250,0.35)",
+            boxShadow: "0 0 40px rgba(167,139,250,0.2)",
+          }}
+        >
           🌍
         </div>
-        <h1 className="text-3xl font-bold text-white">{t("app.title")}</h1>
-        <p className="text-white/60 text-sm max-w-xs">{t("verify.subtitle")}</p>
+        <h1 className="text-3xl font-extrabold" style={{ color: "var(--foreground)" }}>
+          MoodMap
+        </h1>
+        <p className="text-sm max-w-xs" style={{ color: "var(--foreground-muted)" }}>
+          {t("verify.subtitle")}
+        </p>
       </div>
 
       {/* Features */}
-      <div className="flex flex-col gap-3 w-full max-w-xs">
-        {(["verify.feature1", "verify.feature2", "verify.feature3"] as const).map(
-          (key, i) => (
-            <div
-              key={key}
-              className="flex items-center gap-3 bg-white/5 rounded-2xl px-4 py-3"
-            >
-              <span className="text-xl">
-                {["😊", "🗺️", "🔥"][i]}
-              </span>
-              <span className="text-white/80 text-sm">{t(key)}</span>
-            </div>
-          )
-        )}
+      <div className="flex flex-col gap-2.5 w-full max-w-xs">
+        {features.map(({ emoji, text }) => (
+          <div
+            key={text}
+            className="flex items-center gap-3 px-4 py-3 rounded-2xl"
+            style={{ background: "var(--background-card)", border: "1px solid rgba(255,255,255,0.06)" }}
+          >
+            <span className="text-xl">{emoji}</span>
+            <span className="text-sm" style={{ color: "var(--foreground-muted)" }}>{text}</span>
+          </div>
+        ))}
       </div>
 
       {/* CTA */}
       {!isInWorldApp ? (
-        <p className="text-white/40 text-sm">{t("verify.notInWorldApp")}</p>
+        <p className="text-sm" style={{ color: "var(--foreground-subtle)" }}>
+          {t("verify.notInWorldApp")}
+        </p>
       ) : (
         <button
           onClick={handleWalletAuth}
           disabled={isAuthLoading}
-          className="w-full max-w-xs bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#F97316]/30 active:scale-95 transition-all disabled:opacity-60"
+          className="w-full max-w-xs font-bold py-4 rounded-2xl active:scale-95 transition-all disabled:opacity-60 text-white"
+          style={{
+            background: "linear-gradient(135deg, #a78bfa, #818cf8)",
+            boxShadow: "0 4px 24px rgba(167,139,250,0.3)",
+          }}
         >
           {isAuthLoading ? t("verify.verifying") : t("verify.button")}
         </button>
       )}
 
-      <p className="text-white/20 text-xs">{t("verify.footer")}</p>
+      <p className="text-xs" style={{ color: "var(--foreground-subtle)" }}>
+        {t("verify.footer")}
+      </p>
     </div>
   );
 }
@@ -69,7 +91,7 @@ function MoodMapApp() {
 
   if (!walletAddress) {
     return (
-      <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1E1B4B] via-[#1E1B4B] to-[#111827]">
+      <div className="min-h-screen flex flex-col" style={{ background: "var(--background)" }}>
         <WalletAuthScreen />
       </div>
     );
@@ -85,7 +107,7 @@ function MoodMapApp() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1E1B4B] via-[#1E1B4B] to-[#111827]">
+    <div className="min-h-screen flex flex-col" style={{ background: "var(--background)" }}>
       {renderTab()}
       <Navigation
         activeTab={activeTab}
