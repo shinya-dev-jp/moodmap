@@ -24,6 +24,7 @@ interface AppContextValue {
   handleWalletAuth: () => Promise<void>;
   handleLogMood: (mood: MoodType) => Promise<void>;
   refreshMe: () => Promise<void>;
+  updateDisplayName: (name: string) => Promise<void>;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -112,6 +113,25 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, [refreshMe]);
 
+  const updateDisplayName = useCallback(
+    async (name: string) => {
+      const token = authToken ?? localStorage.getItem(AUTH_KEY);
+      if (!token) return;
+      const res = await fetch("/api/mood/profile", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ display_name: name }),
+      });
+      if (res.ok) {
+        setUser((prev) => prev ? { ...prev, display_name: name } : prev);
+      }
+    },
+    [authToken]
+  );
+
   const handleLogMood = useCallback(
     async (mood: MoodType) => {
       const token = authToken ?? localStorage.getItem(AUTH_KEY);
@@ -157,6 +177,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         handleWalletAuth,
         handleLogMood,
         refreshMe,
+        updateDisplayName,
       }}
     >
       {children}

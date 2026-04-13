@@ -1,9 +1,11 @@
 "use client";
 
+import { useState, useRef } from "react";
 import { useApp } from "@/components/providers/AppProvider";
 import { useI18n } from "@/i18n";
 import type { MoodType } from "@/lib/types";
 import type { Locale } from "@/i18n";
+import { Pencil, Check, X } from "lucide-react";
 
 const MOOD_EMOJI: Record<MoodType, string> = {
   happy:    "😊",
@@ -26,8 +28,38 @@ const LOCALES: { code: Locale; label: string }[] = [
 ];
 
 export function ProfileScreen() {
-  const { walletAddress, user, todayMood, streak, history } = useApp();
+  const { walletAddress, user, todayMood, streak, history, updateDisplayName } = useApp();
   const { t, locale, setLocale } = useI18n();
+
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState("");
+  const [isSavingName, setIsSavingName] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const displayName = user?.display_name || "匿名";
+
+  function startEdit() {
+    setNameInput(user?.display_name ?? "");
+    setIsEditingName(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
+  }
+
+  function cancelEdit() {
+    setIsEditingName(false);
+    setNameInput("");
+  }
+
+  async function saveName() {
+    const trimmed = nameInput.trim();
+    if (!trimmed || trimmed === user?.display_name) { cancelEdit(); return; }
+    setIsSavingName(true);
+    try {
+      await updateDisplayName(trimmed);
+      setIsEditingName(false);
+    } finally {
+      setIsSavingName(false);
+    }
+  }
 
   const shortAddress = walletAddress
     ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
@@ -52,7 +84,48 @@ export function ProfileScreen() {
       {/* Avatar + name */}
       <div>
         <p className="text-white/50 text-sm">{t("profile.yourProfile")}</p>
-        <h2 className="text-2xl font-bold text-white font-mono">{shortAddress}</h2>
+
+        {/* Nickname row */}
+        {isEditingName ? (
+          <div className="flex items-center gap-2 mt-1">
+            <input
+              ref={inputRef}
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              onKeyDown={(e) => { if (e.key === "Enter") saveName(); if (e.key === "Escape") cancelEdit(); }}
+              maxLength={24}
+              className="flex-1 bg-white/10 text-white text-lg font-bold rounded-xl px-3 py-1 outline-none border border-[#F97316]/50 focus:border-[#F97316]"
+              placeholder="ニックネーム"
+              disabled={isSavingName}
+            />
+            <button
+              onClick={saveName}
+              disabled={isSavingName}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#F97316] text-white disabled:opacity-50"
+            >
+              <Check size={14} />
+            </button>
+            <button
+              onClick={cancelEdit}
+              disabled={isSavingName}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white/60"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2 mt-1">
+            <h2 className="text-2xl font-bold text-white">{displayName}</h2>
+            <button
+              onClick={startEdit}
+              className="w-7 h-7 flex items-center justify-center rounded-full bg-white/10 text-white/40 hover:bg-white/20 hover:text-white/70 transition-colors"
+            >
+              <Pencil size={13} />
+            </button>
+          </div>
+        )}
+
+        <p className="text-white/30 text-xs mt-0.5 font-mono">{shortAddress}</p>
         {joinDate && (
           <p className="text-white/40 text-xs mt-0.5">
             {t("profile.memberSince", { date: joinDate })}
