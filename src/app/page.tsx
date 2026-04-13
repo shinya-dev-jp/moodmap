@@ -10,6 +10,8 @@ import { ProfileScreen } from "@/components/screens/ProfileScreen";
 import { MiniKit } from "@worldcoin/minikit-js";
 
 // ── Wallet Auth Screen ─────────────────────────────────────────
+const MOOD_FLOATS = ["😊", "😢", "😡", "😴", "🥰", "😎", "😰", "🤩"];
+
 function WalletAuthScreen() {
   const { handleWalletAuth, isAuthLoading } = useApp();
   const { t } = useI18n();
@@ -18,48 +20,72 @@ function WalletAuthScreen() {
     typeof window !== "undefined" && MiniKit.isInstalled();
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8 text-center">
-      {/* Logo */}
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-20 h-20 rounded-3xl overflow-hidden shadow-2xl shadow-[#F97316]/40">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon-512.png" alt="MoodMap" className="w-full h-full object-cover" />
-        </div>
-        <h1 className="text-3xl font-bold text-white">{t("app.title")}</h1>
-        <p className="text-white/60 text-sm max-w-xs">{t("verify.subtitle")}</p>
+    <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-b from-[#0F0C29] via-[#1E1B4B] to-[#111827] relative overflow-hidden">
+      {/* Floating mood emojis background */}
+      <div className="absolute inset-0 pointer-events-none select-none" aria-hidden>
+        {MOOD_FLOATS.map((emoji, i) => (
+          <span
+            key={i}
+            className="absolute text-2xl opacity-10"
+            style={{
+              left: `${10 + (i * 11) % 80}%`,
+              top: `${8 + (i * 17) % 75}%`,
+            }}
+          >
+            {emoji}
+          </span>
+        ))}
       </div>
 
-      {/* Features */}
-      <div className="flex flex-col gap-3 w-full max-w-xs">
-        {(["verify.feature1", "verify.feature2", "verify.feature3"] as const).map(
-          (key, i) => (
+      <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8 text-center relative z-10">
+        {/* Hero */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-24 h-24 rounded-3xl overflow-hidden shadow-2xl shadow-[#F97316]/30 ring-2 ring-white/10">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icon-512.png" alt="MoodMap" className="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h1 className="text-4xl font-black text-white tracking-tight">{t("app.title")}</h1>
+            <p className="text-white/50 text-sm mt-1 max-w-[260px]">{t("verify.subtitle")}</p>
+          </div>
+        </div>
+
+        {/* Feature pills */}
+        <div className="flex flex-col gap-2.5 w-full max-w-[300px]">
+          {([
+            { key: "verify.feature1", emoji: "😊", color: "from-orange-500/20 to-orange-500/5", border: "border-orange-500/20" },
+            { key: "verify.feature2", emoji: "🗺️", color: "from-indigo-500/20 to-indigo-500/5", border: "border-indigo-500/20" },
+            { key: "verify.feature3", emoji: "🔥", color: "from-rose-500/20 to-rose-500/5",    border: "border-rose-500/20" },
+          ] as const).map(({ key, emoji, color, border }) => (
             <div
               key={key}
-              className="flex items-center gap-3 bg-white/5 rounded-2xl px-4 py-3"
+              className={`flex items-center gap-3 bg-gradient-to-r ${color} border ${border} rounded-2xl px-4 py-3`}
             >
-              <span className="text-xl">
-                {["😊", "🗺️", "🔥"][i]}
-              </span>
-              <span className="text-white/80 text-sm">{t(key)}</span>
+              <span className="text-xl">{emoji}</span>
+              <span className="text-white/80 text-sm font-medium">{t(key)}</span>
             </div>
-          )
-        )}
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col items-center gap-3 w-full max-w-[300px]">
+          {!isInWorldApp ? (
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-3xl">📱</span>
+              <p className="text-white/40 text-sm">{t("verify.notInWorldApp")}</p>
+            </div>
+          ) : (
+            <button
+              onClick={handleWalletAuth}
+              disabled={isAuthLoading}
+              className="w-full bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#F97316]/40 active:scale-95 transition-all disabled:opacity-60 text-base"
+            >
+              {isAuthLoading ? t("verify.verifying") : t("verify.button")}
+            </button>
+          )}
+          <p className="text-white/20 text-xs">{t("verify.footer")}</p>
+        </div>
       </div>
-
-      {/* CTA */}
-      {!isInWorldApp ? (
-        <p className="text-white/40 text-sm">{t("verify.notInWorldApp")}</p>
-      ) : (
-        <button
-          onClick={handleWalletAuth}
-          disabled={isAuthLoading}
-          className="w-full max-w-xs bg-gradient-to-r from-[#F97316] to-[#F59E0B] text-white font-bold py-4 rounded-2xl shadow-lg shadow-[#F97316]/30 active:scale-95 transition-all disabled:opacity-60"
-        >
-          {isAuthLoading ? t("verify.verifying") : t("verify.button")}
-        </button>
-      )}
-
-      <p className="text-white/20 text-xs">{t("verify.footer")}</p>
     </div>
   );
 }
