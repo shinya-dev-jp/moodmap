@@ -41,10 +41,11 @@ function WalletAuthScreen() {
   const { handleWalletAuth, isAuthLoading } = useApp();
   const { t } = useI18n();
 
+  const isPreview = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "1";
   const isInWorldApp =
     typeof window !== "undefined" && MiniKit.isInstalled();
 
-  if (!isInWorldApp) return <NotInWorldAppScreen />;
+  if (!isInWorldApp && !isPreview) return <NotInWorldAppScreen />;
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-gradient-to-b from-[#0F0C29] via-[#1E1B4B] to-[#111827] relative overflow-hidden">
@@ -111,8 +112,9 @@ function WalletAuthScreen() {
 // ── Main App ────────────────────────────────────────────────────
 function MoodMapApp() {
   const { walletAddress, activeTab, setActiveTab, todayMood } = useApp();
+  const isPreview = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "1";
 
-  if (!walletAddress) {
+  if (!walletAddress && !isPreview) {
     return (
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#1E1B4B] via-[#1E1B4B] to-[#111827]">
         <WalletAuthScreen />
