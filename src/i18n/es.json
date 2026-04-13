@@ -49,5 +49,7 @@
   "profile.yourProfile": "Tu Perfil",
   "profile.topVibes": "Tus estados principales",
   "profile.recentEntries": "Entradas recientes",
-  "profile.langLabel": "Idioma"
+  "profile.langLabel": "Idioma",
+  "notInWorldApp.line1": "MoodMap es una Mini App de World App.",
+  "notInWorldApp.line2": "Ábrela dentro de World App para continuar."
 }
