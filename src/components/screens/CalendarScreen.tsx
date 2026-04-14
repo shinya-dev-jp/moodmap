@@ -43,7 +43,7 @@ export function CalendarScreen() {
   return (
     <div className="flex-1 flex flex-col px-4 pt-6 pb-4 gap-4 overflow-y-auto">
       <div>
-        <p className="text-white/50 text-sm">Your patterns</p>
+        <p className="text-white/50 text-sm">{t("calendar.subtitle")}</p>
         <h1 className="text-2xl font-bold text-white">{t("calendar.title")}</h1>
       </div>
 
@@ -51,13 +51,13 @@ export function CalendarScreen() {
       <div className="grid grid-cols-3 gap-3">
         <div className="bg-white/5 rounded-2xl p-3 text-center">
           <div className="text-2xl font-bold text-[#F97316]">{streak}</div>
-          <div className="text-white/50 text-xs mt-1">day streak</div>
+          <div className="text-white/50 text-xs mt-1">{t("profile.streak")}</div>
         </div>
         <div className="bg-white/5 rounded-2xl p-3 text-center">
           <div className="text-2xl font-bold text-[#F59E0B]">
             {history.filter((d) => d.mood !== null).length}
           </div>
-          <div className="text-white/50 text-xs mt-1">total logs</div>
+          <div className="text-white/50 text-xs mt-1">{t("profile.totalLogs")}</div>
         </div>
         <div className="bg-white/5 rounded-2xl p-3 text-center">
           <div className="text-2xl">
@@ -66,14 +66,14 @@ export function CalendarScreen() {
               return m ? MOOD_EMOJI[m] : "—";
             })()}
           </div>
-          <div className="text-white/50 text-xs mt-1">top mood</div>
+          <div className="text-white/50 text-xs mt-1">{t("calendar.topMood")}</div>
         </div>
       </div>
 
       {/* Last 7 days bar view */}
       {last7.length > 0 && (
         <div className="bg-white/5 rounded-2xl p-4">
-          <p className="text-white/50 text-xs mb-3">Last 7 days</p>
+          <p className="text-white/50 text-xs mb-3">{t("calendar.last7Days")}</p>
           <div className="grid grid-cols-7 gap-1.5">
             {last7.map(({ date, mood }) => {
               const dow = ["Su","Mo","Tu","We","Th","Fr","Sa"][new Date(date).getDay()];
