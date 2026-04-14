@@ -36,7 +36,7 @@ export function ProfileScreen() {
   const [isSavingName, setIsSavingName] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const displayName = user?.display_name || "匿名";
+  const displayName = user?.display_name || t("profile.anonymous");
 
   function startEdit() {
     setNameInput(user?.display_name ?? "");
@@ -95,7 +95,7 @@ export function ProfileScreen() {
               onKeyDown={(e) => { if (e.key === "Enter") saveName(); if (e.key === "Escape") cancelEdit(); }}
               maxLength={24}
               className="flex-1 bg-white/10 text-white text-lg font-bold rounded-xl px-3 py-1 outline-none border border-[#F97316]/50 focus:border-[#F97316]"
-              placeholder="ニックネーム"
+              placeholder={t("profile.namePlaceholder")}
               disabled={isSavingName}
             />
             <button

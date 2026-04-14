@@ -13,7 +13,7 @@ export async function PATCH(req: NextRequest) {
   }
 
   const { error } = await supabaseAdmin
-    .from("users")
+    .from("mm_users")
     .update({ display_name: name })
     .eq("address", address);
 

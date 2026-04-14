@@ -50,6 +50,8 @@
   "profile.topVibes": "자주 기록한 기분",
   "profile.recentEntries": "최근 기록",
   "profile.langLabel": "언어",
+  "profile.anonymous": "익명",
+  "profile.namePlaceholder": "닉네임",
   "notInWorldApp.line1": "MoodMap은 World App 전용 미니앱입니다.",
   "notInWorldApp.line2": "World App에서 열어주세요."
 }

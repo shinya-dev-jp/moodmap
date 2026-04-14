@@ -50,6 +50,8 @@
   "profile.topVibes": "Tus estados principales",
   "profile.recentEntries": "Entradas recientes",
   "profile.langLabel": "Idioma",
+  "profile.anonymous": "Anónimo",
+  "profile.namePlaceholder": "Apodo",
   "notInWorldApp.line1": "MoodMap es una Mini App de World App.",
   "notInWorldApp.line2": "Ábrela dentro de World App para continuar."
 }

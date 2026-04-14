@@ -1,0 +1,81 @@
+{
+  "basic": {
+    "app_name": "MoodMap",
+    "publisher": "Shinya Dev",
+    "app_url": "https://moodmap-five.vercel.app",
+    "official_website": "https://moodmap-five.vercel.app",
+    "is_mini_app": true,
+    "compliance_gambling": false,
+    "verified_humans_only": true,
+    "category": "Lifestyle",
+    "support_type": "email",
+    "support_value": "shinya.yuda.b@gmail.com"
+  },
+
+  "images": {
+    "app_logo": "public/icon-512.png",
+    "content_card": "public/content-card.png",
+    "showcase_images": [
+      "public/showcase-1.png",
+      "public/showcase-2.png",
+      "public/showcase-3.png"
+    ],
+    "meta_tag_image": null
+  },
+
+  "countries": "all",
+
+  "languages": ["en", "ja", "ko", "es", "pt", "th"],
+
+  "localisations": {
+    "en": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "Track your mood, see the world's emotions",
+      "description": "MoodMap lets you record your daily mood with a single tap and explore how people around the world are feeling. Verified by World ID, your emotional data stays anonymous while contributing to a real-time global mood map. Build streaks, discover patterns in your emotional journey, and connect with the collective pulse of humanity — all in under 3 seconds a day."
+    },
+    "ja": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "気分を記録、世界の感情を可視化",
+      "description": "MoodMapは1タップで今日の気分を記録し、世界中の人々がどんな気分かを地図で可視化するアプリです。World IDで本人確認済みのまま匿名で感情データを記録。ストリーク機能で習慣化し、自分の感情パターンを発見。毎日3秒で世界とつながりましょう。"
+    },
+    "ko": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "기분을 기록하고 세계의 감정을 확인하세요",
+      "description": "MoodMap은 한 번의 탭으로 오늘의 기분을 기록하고 전 세계 사람들의 감정을 지도에서 볼 수 있는 앱입니다. World ID로 인증된 익명 감정 데이터를 기록하세요. 스트릭 기능으로 습관을 만들고, 감정 패턴을 발견하세요. 매일 3초로 세계와 연결됩니다."
+    },
+    "es": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "Registra tu humor, explora las emociones del mundo",
+      "description": "MoodMap te permite registrar tu estado de ánimo diario con un solo toque y explorar cómo se sienten las personas en todo el mundo. Verificado por World ID, tus datos emocionales permanecen anónimos. Construye rachas, descubre patrones en tu viaje emocional y conéctate con el pulso colectivo de la humanidad, todo en menos de 3 segundos al día."
+    },
+    "pt": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "Registre seu humor, veja as emoções do mundo",
+      "description": "MoodMap permite registrar seu humor diário com um único toque e explorar como as pessoas ao redor do mundo estão se sentindo. Verificado pelo World ID, seus dados emocionais permanecem anônimos. Construa sequências, descubra padrões em sua jornada emocional e conecte-se com o pulso coletivo da humanidade — tudo em menos de 3 segundos por dia."
+    },
+    "th": {
+      "app_name": "MoodMap",
+      "short_name": "MoodMap",
+      "tag_line": "บันทึกอารมณ์ ดูความรู้สึกของคนทั่วโลก",
+      "description": "MoodMap ให้คุณบันทึกอารมณ์ประจำวันด้วยการแตะเพียงครั้งเดียว และสำรวจว่าผู้คนทั่วโลกรู้สึกอย่างไร ยืนยันตัวตนด้วย World ID ข้อมูลอารมณ์ของคุณยังคงไม่เปิดเผยตัวตน สร้างสตรีค ค้นพบรูปแบบในเส้นทางอารมณ์ของคุณ และเชื่อมต่อกับชีพจรของมนุษยชาติ ทั้งหมดภายใน 3 วินาทีต่อวัน"
+    }
+  },
+
+  "mini_app_permissions": {
+    "whitelisted_payment_addresses": [],
+    "disable_whitelist": false,
+    "permit2_tokens": []
+  },
+
+  "_notes": {
+    "world_app_id": "app_34947c2a634b23de5d591a448a901554",
+    "rp_id": "rp_233f93755e96e519",
+    "status": "未提出 — Allowed Origins 設定後に提出可",
+    "missing_images": ["content-card.png", "showcase-1/2/3.png — 要生成"]
+  }
+}

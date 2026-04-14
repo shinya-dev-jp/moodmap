@@ -50,6 +50,8 @@
   "profile.topVibes": "อารมณ์ที่บันทึกบ่อย",
   "profile.recentEntries": "บันทึกล่าสุด",
   "profile.langLabel": "ภาษา",
+  "profile.anonymous": "ไม่ระบุชื่อ",
+  "profile.namePlaceholder": "ชื่อเล่น",
   "notInWorldApp.line1": "MoodMap เป็นแอปขนาดเล็กของ World App",
   "notInWorldApp.line2": "กรุณาเปิดใน World App เพื่อใช้งาน"
 }

@@ -50,6 +50,8 @@
   "profile.topVibes": "Top Vibes",
   "profile.recentEntries": "Recent Entries",
   "profile.langLabel": "Language",
+  "profile.anonymous": "Anonymous",
+  "profile.namePlaceholder": "Nickname",
   "notInWorldApp.line1": "MoodMap is a World App Mini App.",
   "notInWorldApp.line2": "Open it inside the World App to continue."
 }
